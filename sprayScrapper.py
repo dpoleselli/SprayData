@@ -5,9 +5,9 @@ import string
 import csv
 import sys
 
-
+# command line arguments must include a url, input filename, and output filename
 if len(sys.argv) != 4:
-    sys.exit('Please include 3 parameters: <url> <input filename> <output fileName>')
+    sys.exit('Please include 3 parameters: <url> <input filename> <output filename>')
 
 url = sys.argv[1]
 in_file = sys.argv[2]
@@ -34,16 +34,13 @@ with open(in_file) as csv_file:
         player_id[row[2].lower()] = row[0]
         player_id[row[1].lower()[:1] + ' ' + row[2].lower()] = row[0]
 
-
-# TODO: determine how to open multiple games
 # open website and create BeautifulSoup object
 r = requests.get(url)
 c = r.content
 soup = BeautifulSoup(c,"html.parser")
 
-
 games = soup.find_all('a', text='Box Score', href=True)
-print(len(games))
+
 count = 1
 dupUrl = []
 for g in games:
@@ -51,7 +48,7 @@ for g in games:
     if u in dupUrl:
         continue
     dupUrl.append(u)
-    print('visiting game ' + str(count) + ' @ ' + url[:url.index('.com')+5] + g['href'])
+
     count += 1
     r = requests.get(url[:url.index('.com')+4] + g['href'])
     c = r.content
@@ -67,7 +64,7 @@ for g in games:
             if th:
                 f_initial = ''
                 rest = ''
-                # TODO: handle different structures
+
                 text = th.text.lower()
                 p_split = text.split('.')
                 if len(p_split) < 2:
