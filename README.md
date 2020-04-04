@@ -12,7 +12,7 @@ external systems where players have an Id. After collecting the spray
 information, the program outputs a csv file with percentage x and y 
 coordinates to be plotted on a html canvas.  
 This program was designed to serve as an input for 
-[In-Game Edge](ingameedge.com) or [IGE-Spray](ige-spray.herokuapp.com). 
+[In-Game Edge](http://ingameedge.com/) or [IGE-Spray](http://ige-spray.herokuapp.com). 
 Those projects are both still in development, so for more information 
 on them, please reach out to me directly.
 
